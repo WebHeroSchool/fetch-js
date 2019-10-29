@@ -1,5 +1,14 @@
-const url = 'https://api.github.com/users/6thSence';
-fetch(url)
+let url = window.location.toString();
+let nameFromUrl = (url) => {
+    let nameArr = url.split('=');
+    let userName = nameArr[1];
+    if(userName == undefined) {
+        userName = '6thSence';
+    }
+    return userName;
+}
+let name = nameFromUrl(url);
+fetch('https://api.github.com/users/' + name)
     .then(res => res.json())
     .then(json => {
         let getImage = () => {
